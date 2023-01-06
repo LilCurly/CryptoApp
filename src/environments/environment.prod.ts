@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  baseCoinUrl: 'https://api.coinstats.app/public/v1'
 };

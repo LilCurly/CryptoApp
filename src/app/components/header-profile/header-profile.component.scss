@@ -1,0 +1,25 @@
+ion-toolbar {
+    --background: var(--ion-color-light);
+    --color: var(--ion-color-dark);
+}
+.container {
+    padding: 6px 12px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+
+    ion-avatar {
+        height: 52px;
+        width: 52px;
+    }
+
+    .name {
+        font-family: Roboto-Black;
+    }
+
+    h2 {
+        margin: 0;
+    }
+}

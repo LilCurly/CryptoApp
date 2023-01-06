@@ -1,0 +1,19 @@
+<div class="item">
+  <div class="ion-activatable container">
+    <ion-ripple-effect></ion-ripple-effect>
+    <div class="image">
+      <ion-avatar>
+        <img [src]="imageUrl"/>
+      </ion-avatar>
+    </div>
+    <ion-label>
+      <h2 class="ion-text-wrap">{{ title }}</h2>
+      <p>{{ description }}</p>
+    </ion-label>
+    <div class="information">
+      <ion-badge [color]="change > 0 ? 'success' : 'danger'">
+        {{ change }}%
+      </ion-badge>
+    </div>
+  </div>
+</div>

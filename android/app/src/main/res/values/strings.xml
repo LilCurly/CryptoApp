@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">cryptoapp</string>
+    <string name="title_activity_main">cryptoapp</string>
+    <string name="package_name">com.cryptoapp</string>
+    <string name="custom_url_scheme">com.cryptoapp</string>
+</resources>
