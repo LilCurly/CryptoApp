@@ -78,6 +78,7 @@ export class Tab1Page implements OnInit, AfterViewInit {
     this.coinsService.getCoins().subscribe((result) => {
       this.coins = result;
       this.sortedCoins = result.coins;
+      this.changeDetectorRef.detectChanges();
     });
   }
 

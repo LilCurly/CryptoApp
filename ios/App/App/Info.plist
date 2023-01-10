@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-        <string>cryptoapp</string>
+	<string>cryptoapp</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -43,6 +43,12 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSCameraUsageDescription</key>
+	<string>We will use the camera to capture the photo you take only in the current context</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>We will access the photo library only to get the photo you want to add to the app</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>We will access the photo library only to get the photo you want to add to the app</string>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<true/>
 </dict>

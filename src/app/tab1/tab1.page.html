@@ -3,7 +3,16 @@
 <ion-content scrollY="false">
   <div class="container">
     <div [style.box-shadow]="titleBoxShadow" class="menu">
-      <swiper #swiper [slidesPerView]="slidesPerView" [slidesOffsetBefore]="12" [slideToClickedSlide]="true" [loop]="true" [loopedSlides]="4" [loopedSlidesLimit]="false" (activeIndexChange)="onSlideChange($event)">
+      <swiper
+        #swiper
+        [slidesPerView]="slidesPerView"
+        [slidesOffsetBefore]="12"
+        [slideToClickedSlide]="true"
+        [loop]="true"
+        [loopedSlides]="4"
+        [loopedSlidesLimit]="false"
+        (activeIndexChange)="onSlideChange($event)"
+      >
         <ng-template swiperSlide>
           <ion-label [style.font-size]="titleSize" class="menu-item">
             Popular
@@ -26,17 +35,19 @@
         </ng-template>
       </swiper>
     </div>
-    <cdk-virtual-scroll-viewport *ngIf="sortedCoins != null && sortedCoins.length > 0" [itemSize]="100" #cdkScroll>
+    <cdk-virtual-scroll-viewport
+      *ngIf="sortedCoins != null && sortedCoins.length > 0"
+      [itemSize]="100"
+      #cdkScroll
+    >
       <ion-list>
-        <div 
-          *cdkVirtualFor="let coin of sortedCoins"
-          #coinsList>
-        <card-component
-          [title]="coin.name"
-          [description]="coin.symbol"
-          [imageUrl]="coin.icon"
-          [change]="coin.priceChange1d"
-        ></card-component>
+        <div *cdkVirtualFor="let coin of sortedCoins" #coinsList>
+          <card-component
+            [title]="coin.name"
+            [description]="coin.symbol"
+            [imageUrl]="coin.icon"
+            [change]="coin.priceChange1d"
+          ></card-component>
         </div>
       </ion-list>
     </cdk-virtual-scroll-viewport>

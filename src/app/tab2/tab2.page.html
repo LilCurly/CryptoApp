@@ -1,5 +1,18 @@
-<app-header headerTitle="Tab 2"></app-header>
+<app-header-profile userName="Roman"></app-header-profile>
 
 <ion-content [fullscreen]="true">
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+  <ion-list>
+    <ion-card *ngFor="let note of notes">
+      <img [src]="note.bannerPath" />
+      <ion-card-header>
+        <ion-card-title> {{ note.title }} </ion-card-title>
+      </ion-card-header>
+      <ion-card-content> {{ note.content }} </ion-card-content>
+    </ion-card>
+  </ion-list>
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button [routerLink]="['/add-note']">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>

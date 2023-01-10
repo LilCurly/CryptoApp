@@ -1,6 +1,9 @@
 ion-toolbar {
-    --background: var(--ion-color-tertiary);
-    --color: var(--ion-color-tertiary-contrast);
+    --background: var(--ion-color-light);
+    --color: var(--ion-color-dark);
 
-    border-bottom-right-radius: 28px;
+    --min-height: 64px;
+
+    font-family: Roboto-Bold;
+    font-size: 25px;
 }

@@ -6,7 +6,7 @@ import { Tab2Page } from './tab2.page';
 import { ExploreContainerComponentModule } from '../explore-container/explore-container.module';
 
 import { Tab2PageRoutingModule } from './tab2-routing.module';
-import { HeaderComponentModule } from '../components/header/header.module';
+import { HeaderProfileComponentModule } from '../components/header-profile/header-profile.module';
 
 @NgModule({
   imports: [
@@ -15,7 +15,7 @@ import { HeaderComponentModule } from '../components/header/header.module';
     FormsModule,
     ExploreContainerComponentModule,
     Tab2PageRoutingModule,
-    HeaderComponentModule
+    HeaderProfileComponentModule
   ],
   declarations: [Tab2Page]
 })

@@ -1,0 +1,30 @@
+<app-header headerTitle="Create a note"></app-header>
+
+<ion-content [fullscreen]="true">
+  <div class="container">
+    <div class="image-title">
+      <label> Banner </label>
+    </div>
+    <div class="ion-activatable image-container" (click)="takePicture()">
+      <div *ngIf="noteBanner == undefined">
+        <ion-ripple-effect> </ion-ripple-effect>
+        <ion-icon name="add"></ion-icon>
+      </div>
+      <ion-img *ngIf="noteBanner != undefined" #bannerImage [src]="noteBanner.webPath"></ion-img>
+    </div>
+    <ion-item (ionChange)="noteTitleDidChange($event)">
+      <ion-label position="floating">Title</ion-label>
+      <ion-input [value]="noteTitle" placeholder="Enter text"></ion-input>
+    </ion-item>
+    <ion-item (ionChange)="noteContentDidChange($event)">
+      <ion-label position="floating">Content</ion-label>
+      <ion-textarea
+        [value]="noteContent"
+        [rows]="3"
+        [autoGrow]="true"
+        placeholder="Enter text"
+      ></ion-textarea>
+    </ion-item>
+    <ion-button expand="block" [disabled]="!canSubmit()" (click)="saveNote()">Create</ion-button>
+  </div>
+</ion-content>
