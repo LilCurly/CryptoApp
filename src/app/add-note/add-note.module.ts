@@ -7,8 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { AddNotePageRoutingModule } from './add-note-routing.module';
 
 import { AddNotePage } from './add-note.page';
-import { HeaderComponentModule } from '../components/header/header.module';
-import { HeaderProfileComponentModule } from '../components/header-profile/header-profile.module';
+import { ComponentsModule } from '../components/components.module';
 
 @NgModule({
   imports: [
@@ -16,9 +15,8 @@ import { HeaderProfileComponentModule } from '../components/header-profile/heade
     FormsModule,
     IonicModule,
     AddNotePageRoutingModule,
-    HeaderComponentModule,
-    HeaderProfileComponentModule
+    ComponentsModule,
   ],
-  declarations: [AddNotePage]
+  declarations: [AddNotePage],
 })
 export class AddNotePageModule {}

@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Photo } from '@capacitor/camera';
 import { Directory, Filesystem } from '@capacitor/filesystem';
+import { Platform } from '@ionic/angular';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PhotoService {
-  constructor() {}
+  constructor(private platform: Platform) {}
 
   savePhoto = async (photo: Photo) => {
     const base64Data = await this.readAsBase64(photo);
@@ -18,24 +19,31 @@ export class PhotoService {
       directory: Directory.Data,
     });
 
-    return savedFile.uri;
-  }
+    return fileName;
+  };
 
   fetchPhoto = async (filePath: string) => {
     const file = await Filesystem.readFile({
       path: filePath,
-      directory: Directory.Data
-    })
+      directory: Directory.Data,
+    });
 
-    return `data:image/jpeg;base64,${file.data}`
-  }
+    return `data:image/jpeg;base64,${file.data}`;
+  };
 
   private readAsBase64 = async (photo: Photo) => {
-    const response = await fetch(photo.webPath!);
-    const blob = await response.blob();
+    if (this.platform.is('hybrid')) {
+      const file = await Filesystem.readFile({
+        path: photo.path!,
+      });
+      return file.data;
+    } else {
+      const response = await fetch(photo.webPath!);
+      const blob = await response.blob();
 
-    return (await this.convertBlobToBase64(blob)) as string;
-  }
+      return (await this.convertBlobToBase64(blob)) as string;
+    }
+  };
 
   private convertBlobToBase64 = (blob: Blob) =>
     new Promise((resolve, reject) => {

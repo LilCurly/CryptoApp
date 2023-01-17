@@ -1,14 +1,14 @@
 <app-header-profile userName="Roman"></app-header-profile>
 
 <ion-content [fullscreen]="true">
+  <div class="no-notes" *ngIf="(notes$ | async) == null || (notes$ | async)?.length == 0">
+    <ion-label>
+      You do not have any notes.
+    </ion-label>
+  </div>
   <ion-list>
-    <ion-card *ngFor="let note of notes">
-      <img [src]="note.bannerPath" />
-      <ion-card-header>
-        <ion-card-title> {{ note.title }} </ion-card-title>
-      </ion-card-header>
-      <ion-card-content> {{ note.content }} </ion-card-content>
-    </ion-card>
+    <app-note-card *ngFor="let note of notes$ | async" [note]="note">
+    </app-note-card>
   </ion-list>
   <ion-fab slot="fixed" vertical="bottom" horizontal="end">
     <ion-fab-button [routerLink]="['/add-note']">

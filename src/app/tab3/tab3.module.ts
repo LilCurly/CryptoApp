@@ -6,7 +6,7 @@ import { Tab3Page } from './tab3.page';
 import { ExploreContainerComponentModule } from '../explore-container/explore-container.module';
 
 import { Tab3PageRoutingModule } from './tab3-routing.module';
-import { HeaderComponentModule } from '../components/header/header.module';
+import { ComponentsModule } from '../components/components.module';
 
 @NgModule({
   imports: [
@@ -15,8 +15,8 @@ import { HeaderComponentModule } from '../components/header/header.module';
     FormsModule,
     ExploreContainerComponentModule,
     Tab3PageRoutingModule,
-    HeaderComponentModule
+    ComponentsModule,
   ],
-  declarations: [Tab3Page]
+  declarations: [Tab3Page],
 })
 export class Tab3PageModule {}

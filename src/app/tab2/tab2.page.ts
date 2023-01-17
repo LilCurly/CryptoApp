@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { NotesService } from '../api/notes.service';
-import { Note } from '../models/Note';
-import { PhotoService } from '../service/photo-service.service';
+import { NotesApiActions } from '../state/notes/notes.actions';
+import { selectNotes } from '../state/notes/notes.reducer';
 
 @Component({
   selector: 'app-tab2',
@@ -9,16 +10,21 @@ import { PhotoService } from '../service/photo-service.service';
   styleUrls: ['tab2.page.scss'],
 })
 export class Tab2Page implements OnInit {
-  notes: Note[] | null = null;
+  notes$ = this.store.select(selectNotes);
 
-  constructor(private notesService: NotesService, private photoService: PhotoService) {}
+  constructor(private notesService: NotesService, private store: Store) {}
 
   ngOnInit(): void {
     this.fetchNotes();
   }
 
   fetchNotes = async () => {
-    const result = await this.notesService.getNotes();
-    this.notes = result;
+    this.notesService.getNotes().then((result) => {
+      if (result != null) {
+        this.store.dispatch(
+          NotesApiActions.retrievedNotesListSuccess({ notes: result })
+        );
+      }
+    });
   };
 }

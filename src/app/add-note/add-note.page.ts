@@ -1,8 +1,16 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { Camera, CameraResultType, Photo } from '@capacitor/camera';
-import { InputCustomEvent, IonImg, IonInput } from '@ionic/angular';
+import {
+  InputCustomEvent,
+  IonImg,
+  IonInput,
+  NavController,
+} from '@ionic/angular';
+import { Store } from '@ngrx/store';
 import { NotesService } from '../api/notes.service';
+import { Note } from '../models/Note';
 import { PhotoService } from '../service/photo-service.service';
+import { NotesPageActions } from '../state/notes/notes.actions';
 
 @Component({
   selector: 'app-add-note',
@@ -25,7 +33,12 @@ export class AddNotePage implements OnInit {
 
   @ViewChild('bannerImage') bannerImage!: IonImg;
 
-  constructor(private notesService: NotesService, private photoService: PhotoService) {}
+  constructor(
+    private notesService: NotesService,
+    private photoService: PhotoService,
+    private navCtrl: NavController,
+    private store: Store
+  ) {}
 
   ngOnInit() {}
 
@@ -62,12 +75,24 @@ export class AddNotePage implements OnInit {
       this.noteContent != null &&
       this.noteBanner != null
     ) {
-      const photoUri = await this.photoService.savePhoto(this.noteBanner)
-      const success = await this.notesService.saveNote(
-        this.noteTitle,
-        this.noteContent,
-        photoUri
-      );
+      const photoUri = await this.photoService.savePhoto(this.noteBanner);
+
+      const note: Note = {
+        title: this.noteTitle,
+        content: this.noteContent,
+        bannerPath: photoUri,
+      };
+
+      const success = await this.notesService.saveNote(note);
+
+      if (success) {
+        this.store.dispatch(NotesPageActions.addNote(note));
+        this.navigateBack();
+      }
     }
   };
+
+  private navigateBack() {
+    this.navCtrl.pop();
+  }
 }

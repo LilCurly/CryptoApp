@@ -15,18 +15,10 @@ export class NotesService {
     );
   }
 
-  saveNote = async (
-    noteTitle: string,
-    noteContent: string,
-    noteBannerPath: string
-  ) => {
-    const { error } = await this.client.from('notes').insert({
-      title: noteTitle,
-      content: noteContent,
-      bannerPath: noteBannerPath,
-    });
+  saveNote = async (note: Note) => {
+    const { error } = await this.client.from('notes').insert(note);
 
-    return error != null;
+    return error == null;
   };
 
   getNotes = async () => {

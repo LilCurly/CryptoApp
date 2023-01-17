@@ -6,10 +6,9 @@ import { Tab1Page } from './tab1.page';
 import { ExploreContainerComponentModule } from '../explore-container/explore-container.module';
 
 import { Tab1PageRoutingModule } from './tab1-routing.module';
-import { CardComponentModule } from '../components/card/card.module';
-import { HeaderProfileComponentModule } from '../components/header-profile/header-profile.module';
-import { ScrollingModule } from '@angular/cdk/scrolling'
-import { SwiperModule } from 'swiper/angular'
+import { ScrollingModule } from '@angular/cdk/scrolling';
+import { SwiperModule } from 'swiper/angular';
+import { ComponentsModule } from '../components/components.module';
 
 @NgModule({
   imports: [
@@ -18,11 +17,10 @@ import { SwiperModule } from 'swiper/angular'
     FormsModule,
     ExploreContainerComponentModule,
     Tab1PageRoutingModule,
-    HeaderProfileComponentModule,
-    CardComponentModule,
+    ComponentsModule,
     ScrollingModule,
-    SwiperModule
+    SwiperModule,
   ],
-  declarations: [Tab1Page]
+  declarations: [Tab1Page],
 })
 export class Tab1PageModule {}

@@ -1,4 +1,15 @@
-ion-card {
-    --background: var(--ion-color-cards);
-    box-shadow: 0px 0px 10px var(--ion-color-cards);
+ion-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .no-notes {
+        height: 90%;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
 }
