@@ -20,7 +20,7 @@ export const notesFeature = createFeature({
     on(NotesApiActions.retrievedNotesListSuccess, (state, { notes }) => ({
       ...state,
       notes,
-      loading: false
+      loading: false,
     })),
     on(NotesPageActions.addNote, (state, note) => ({
       ...state,
@@ -29,10 +29,5 @@ export const notesFeature = createFeature({
   ),
 });
 
-export const {
-    name,
-    reducer,
-    selectNotesState,
-    selectNotes,
-    selectLoading,
-} = notesFeature
+export const { name, reducer, selectNotesState, selectNotes, selectLoading } =
+  notesFeature;

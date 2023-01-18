@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { iosTransitionAnimation } from './transitions/ios-custom.transition';
 import { StoreModule } from '@ngrx/store';
 import { notesFeature } from './state/notes/notes.reducer';
+import { coinsFeature } from './state/coins/coins.reducer';
 
 let ionic = [
   IonicModule.forRoot({
@@ -19,7 +20,15 @@ let ionic = [
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, ...ionic, AppRoutingModule, HttpClientModule, StoreModule.forRoot({}), StoreModule.forFeature(notesFeature)],
+  imports: [
+    BrowserModule,
+    ...ionic,
+    AppRoutingModule,
+    HttpClientModule,
+    StoreModule.forRoot({}),
+    StoreModule.forFeature(notesFeature),
+    StoreModule.forFeature(coinsFeature),
+  ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })

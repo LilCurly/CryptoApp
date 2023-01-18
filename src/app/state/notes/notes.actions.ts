@@ -1,4 +1,4 @@
-import { createAction, createActionGroup, props } from '@ngrx/store';
+import { createActionGroup, props } from '@ngrx/store';
 import { Note } from 'src/app/models/Note';
 
 export const NotesPageActions = createActionGroup({

@@ -10,6 +10,10 @@ const routes: Routes = [
     path: 'add-note',
     loadChildren: () => import('./add-note/add-note.module').then( m => m.AddNotePageModule)
   },
+  {
+    path: 'coin-detail',
+    loadChildren: () => import('./coin-detail/coin-detail.module').then( m => m.CoinDetailPageModule)
+  },
 ];
 @NgModule({
   imports: [

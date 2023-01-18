@@ -1,5 +1,4 @@
 import {
-  CdkVirtualForOf,
   CdkVirtualScrollViewport,
 } from '@angular/cdk/scrolling';
 import {
@@ -8,7 +7,6 @@ import {
   ChangeDetectorRef,
   Component,
   ElementRef,
-  Input,
   OnInit,
   QueryList,
   ViewChild,
@@ -17,9 +15,17 @@ import {
 } from '@angular/core';
 import { AnimationController } from '@ionic/angular';
 import { CoinsService } from '../api/coins.service';
-import { CoinResult, CoinsResult } from '../models/CoinsResult';
 import { Swiper } from 'swiper';
-import { SwiperComponent } from 'swiper/angular';
+import { Store } from '@ngrx/store';
+import {
+  selectSelectedTab,
+  selectSortedCoins,
+} from '../state/coins/coins.reducer';
+import {
+  CoinsApiActions,
+  CoinsPageActions,
+} from '../state/coins/coins.actions';
+import { CoinResult } from '../models/CoinsResult';
 
 @Component({
   selector: 'app-tab1',
@@ -29,16 +35,14 @@ import { SwiperComponent } from 'swiper/angular';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Tab1Page implements OnInit, AfterViewInit {
-  @Input('coins') coins: CoinsResult | null = null;
-  @Input() sortedCoins: CoinResult[] | null = null;
+  sortedCoins$ = this.store.select(selectSortedCoins);
+  selectedTab$ = this.store.select(selectSelectedTab);
 
   @ViewChildren('coinsList', { read: ElementRef })
   coinsListRef: QueryList<ElementRef> | null = null;
   shouldAnimateList = true;
 
-  @ViewChild(CdkVirtualForOf) vrList!: CdkVirtualForOf<any>;
   @ViewChild(CdkVirtualScrollViewport) vsv!: CdkVirtualScrollViewport;
-  @ViewChild('swiper') mSwiper!: SwiperComponent;
 
   titleSize: string = '24px';
   titleBoxShadow: string = '0px 2px 9px 10px rgba(215,216,218,0)';
@@ -54,15 +58,20 @@ export class Tab1Page implements OnInit, AfterViewInit {
     maxSlidesGrow: 0.5,
   };
 
-  selectedTab = 0;
-
   constructor(
     private coinsService: CoinsService,
     private animationCntrl: AnimationController,
+    private store: Store,
     private changeDetectorRef: ChangeDetectorRef
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.loadCoins();
+
+    this.sortedCoins$.subscribe((_val) => {
+      this.shouldAnimateList = true;
+    });
+  }
 
   ngAfterViewInit(): void {
     this.coinsListRef?.changes.subscribe((_) => {
@@ -71,14 +80,13 @@ export class Tab1Page implements OnInit, AfterViewInit {
       }
       this.initHeaderAnimation();
     });
-    this.loadCoins();
   }
 
   loadCoins() {
     this.coinsService.getCoins().subscribe((result) => {
-      this.coins = result;
-      this.sortedCoins = result.coins;
-      this.changeDetectorRef.detectChanges();
+      this.store.dispatch(
+        CoinsApiActions.retrievedCoinsListSuccess({ coins: result.coins })
+      );
     });
   }
 
@@ -130,34 +138,12 @@ export class Tab1Page implements OnInit, AfterViewInit {
   }
 
   onSlideChange([swiper]: [Swiper]) {
-    if (this.selectedTab != swiper.realIndex % 4) {
-      this.selectedTab = swiper.realIndex % 4;
-      this.shouldAnimateList = true;
-      this.sortCoins(this.selectedTab);
-      this.changeDetectorRef.detectChanges();
-    }
+    this.store.dispatch(
+      CoinsPageActions.updateSelectedTab({ selectedTab: swiper.realIndex % 4 })
+    );
   }
 
-  sortCoins(selectedTab: number) {
-    var val: CoinResult[] | undefined;
-    if (selectedTab == 0) {
-      val = this.coins?.coins;
-    } else if (selectedTab == 4) {
-      val = this.coins?.coins.sort((a, b) => {
-        return a.marketCap - b.marketCap;
-      });
-    } else {
-      val = this.coins?.coins.filter((el) => {
-        if (selectedTab == 1) {
-          return el.priceChange1d > 0;
-        } else if (selectedTab == 2) {
-          return el.priceChange1d < 0;
-        }
-        return el;
-      });
-    }
-    if (val != undefined) {
-      this.sortedCoins = val;
-    }
+  coinsTrackBy(_index: number, coin: CoinResult) {
+    return coin.id;
   }
 }
