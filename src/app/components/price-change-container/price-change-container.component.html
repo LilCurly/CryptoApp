@@ -1,0 +1,8 @@
+<div class="container">
+  <app-price-change-card
+    *ngFor="let item of items"
+    [priceChange]="item.priceChangePercent"
+    [priceChangeInterval]="item.priceChangeInterval"
+    [width]="(platformWidth! / items.length)-24"
+  ></app-price-change-card>
+</div>

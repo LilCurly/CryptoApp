@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { CoinResult } from '../models/CoinsResult';
 
 @Component({
   selector: 'app-coin-detail',
@@ -6,10 +8,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./coin-detail.page.scss'],
 })
 export class CoinDetailPage implements OnInit {
+  coin!: CoinResult;
 
-  constructor() { }
-
-  ngOnInit() {
+  constructor(private router: Router) {
+    this.coin = this.router.getCurrentNavigation()!.extras!.state!['coin'];
   }
 
+  ngOnInit() {}
 }

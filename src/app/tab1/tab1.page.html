@@ -50,6 +50,7 @@
             [description]="coin.symbol"
             [imageUrl]="coin.icon"
             [change]="coin.priceChange1d"
+            (click)="itemClicked(coin)"
           ></card-component>
         </div>
       </ion-list>

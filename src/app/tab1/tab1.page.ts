@@ -1,6 +1,4 @@
-import {
-  CdkVirtualScrollViewport,
-} from '@angular/cdk/scrolling';
+import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
@@ -13,7 +11,7 @@ import {
   ViewChildren,
   ViewEncapsulation,
 } from '@angular/core';
-import { AnimationController } from '@ionic/angular';
+import { AnimationController, NavController } from '@ionic/angular';
 import { CoinsService } from '../api/coins.service';
 import { Swiper } from 'swiper';
 import { Store } from '@ngrx/store';
@@ -62,6 +60,7 @@ export class Tab1Page implements OnInit, AfterViewInit {
     private coinsService: CoinsService,
     private animationCntrl: AnimationController,
     private store: Store,
+    private navCtrl: NavController,
     private changeDetectorRef: ChangeDetectorRef
   ) {}
 
@@ -145,5 +144,9 @@ export class Tab1Page implements OnInit, AfterViewInit {
 
   coinsTrackBy(_index: number, coin: CoinResult) {
     return coin.id;
+  }
+
+  itemClicked(coin: CoinResult) {
+    this.navCtrl.navigateForward('coin-detail', { state: { coin: coin } });
   }
 }

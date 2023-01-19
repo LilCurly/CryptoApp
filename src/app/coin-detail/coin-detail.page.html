@@ -1,9 +1,11 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>coin-detail</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-header [headerTitle]="coin.name"></app-header>
 
 <ion-content>
-
+  <div class="container">
+    <ion-img [src]="coin.icon"></ion-img>
+    <ion-label>{{ coin.symbol }}</ion-label>
+    <app-price-change-container
+      [items]="[{priceChangeInterval: 'Hourly', priceChangePercent: coin.priceChange1h},{priceChangeInterval: 'Daily', priceChangePercent: coin.priceChange1d},{priceChangeInterval: 'Weekly', priceChangePercent: coin.priceChange1w}]"
+    ></app-price-change-container>
+  </div>
 </ion-content>

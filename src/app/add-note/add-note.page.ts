@@ -1,11 +1,6 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Camera, CameraResultType, Photo } from '@capacitor/camera';
-import {
-  InputCustomEvent,
-  IonImg,
-  IonInput,
-  NavController,
-} from '@ionic/angular';
+import { InputCustomEvent, NavController } from '@ionic/angular';
 import { Store } from '@ngrx/store';
 import { NotesService } from '../api/notes.service';
 import { Note } from '../models/Note';
@@ -16,6 +11,7 @@ import { NotesPageActions } from '../state/notes/notes.actions';
   selector: 'app-add-note',
   templateUrl: './add-note.page.html',
   styleUrls: ['./add-note.page.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AddNotePage implements OnInit {
   noteTitle: string | null | undefined = '';
@@ -30,8 +26,6 @@ export class AddNotePage implements OnInit {
       this.noteBanner != undefined
     );
   };
-
-  @ViewChild('bannerImage') bannerImage!: IonImg;
 
   constructor(
     private notesService: NotesService,

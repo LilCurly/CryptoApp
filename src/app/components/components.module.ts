@@ -7,10 +7,12 @@ import { HeaderProfileComponent } from './header-profile/header-profile.componen
 import { CardComponent } from './card/card.component';
 import { HeaderComponent } from './header/header.component';
 import { NoteCardComponent } from './note-card/note-card.component';
+import { PriceChangeCardComponent } from './price-change-card/price-change-card.component';
+import { PriceChangeContainerComponent } from './price-change-container/price-change-container.component';
 
 @NgModule({
   imports: [CommonModule, FormsModule, IonicModule],
-  declarations: [HeaderProfileComponent, CardComponent, HeaderComponent, HeaderProfileComponent, NoteCardComponent],
-  exports: [HeaderProfileComponent, CardComponent, HeaderComponent, HeaderProfileComponent, NoteCardComponent],
+  declarations: [HeaderProfileComponent, CardComponent, HeaderComponent, HeaderProfileComponent, NoteCardComponent, PriceChangeCardComponent, PriceChangeContainerComponent],
+  exports: [HeaderProfileComponent, CardComponent, HeaderComponent, HeaderProfileComponent, NoteCardComponent, PriceChangeCardComponent, PriceChangeContainerComponent],
 })
 export class ComponentsModule {}

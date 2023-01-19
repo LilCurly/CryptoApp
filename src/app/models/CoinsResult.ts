@@ -11,5 +11,7 @@ export interface CoinResult {
     volume: number,
     marketCap: number,
     priceChange1d: number,
+    priceChange1h: number,
+    priceChange1w: number,
     websiteUrl: string
 }
