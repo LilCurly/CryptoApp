@@ -14,6 +14,10 @@ const routes: Routes = [
     path: 'coin-detail',
     loadChildren: () => import('./coin-detail/coin-detail.module').then( m => m.CoinDetailPageModule)
   },
+  {
+    path: 'filter',
+    loadChildren: () => import('./modal/filter/filter.module').then( m => m.FilterPageModule)
+  },
 ];
 @NgModule({
   imports: [

@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Filter By</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-segment [value]="selectedFilterByPrice$ | async" (ionChange)="didChangeFilterByPrice($event)">
+    <ion-segment-button value="descending">
+      <ion-label>Descending</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="normal">
+      <ion-label>Normal</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="ascending">
+      <ion-label>Ascending</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+</ion-content>

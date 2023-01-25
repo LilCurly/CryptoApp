@@ -11,7 +11,11 @@ import {
   ViewChildren,
   ViewEncapsulation,
 } from '@angular/core';
-import { AnimationController, NavController } from '@ionic/angular';
+import {
+  AnimationController,
+  ModalController,
+  NavController,
+} from '@ionic/angular';
 import { CoinsService } from '../api/coins.service';
 import { Swiper } from 'swiper';
 import { Store } from '@ngrx/store';
@@ -24,6 +28,7 @@ import {
   CoinsPageActions,
 } from '../state/coins/coins.actions';
 import { CoinResult } from '../models/CoinsResult';
+import { FilterPage } from '../modal/filter/filter.page';
 
 @Component({
   selector: 'app-tab1',
@@ -56,11 +61,21 @@ export class Tab1Page implements OnInit, AfterViewInit {
     maxSlidesGrow: 0.5,
   };
 
+  filterClicked = async () => {
+    const modal = await this.modalCtrl.create({
+      component: FilterPage,
+      breakpoints: [0, 0.2, 0.3],
+      initialBreakpoint: 0.2,
+    });
+    await modal.present();
+  };
+
   constructor(
     private coinsService: CoinsService,
     private animationCntrl: AnimationController,
     private store: Store,
     private navCtrl: NavController,
+    private modalCtrl: ModalController,
     private changeDetectorRef: ChangeDetectorRef
   ) {}
 

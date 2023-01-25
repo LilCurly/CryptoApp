@@ -1,4 +1,6 @@
-<div class="container" [style.width]="width+'px'">
-  <ion-label class="price-change-interval">{{ priceChangeInterval }}</ion-label>
-  <ion-label class="price-change-percent" [color]="priceChange > 0 ? 'success' : 'danger'">{{ priceChange+'%' }}</ion-label>
+<div class="item">
+  <div class="container" [style.width]="width+'px'">
+    <ion-label class="price-change-interval">{{ priceChangeInterval }}</ion-label>
+    <ion-label class="price-change-percent" [color]="priceChange > 0 ? 'success' : 'danger'">{{ priceChange+'%' }}</ion-label>
+  </div>
 </div>

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-header-profile',
@@ -7,6 +7,9 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class HeaderProfileComponent implements OnInit {
   @Input('userName') userName: String = '';
+
+  @Input() shouldShowFilter: boolean = false
+  @Input() onFilterClick!: () => void
 
   constructor() {}
 

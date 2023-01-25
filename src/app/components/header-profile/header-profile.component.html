@@ -8,6 +8,14 @@
         <h2>Welcome,</h2>
         <h2 class="name">{{ userName }}</h2>
       </ion-label>
+      <div class="spacer"></div>
+      <div class="icons-container">
+        <ion-avatar *ngIf="shouldShowFilter" class="ion-activatable" (click)="onFilterClick()">
+          <ion-ripple-effect></ion-ripple-effect>
+          <ion-icon name="filter">
+          </ion-icon>
+        </ion-avatar>
+      </div>
     </div>
   </ion-toolbar>
 </ion-header>

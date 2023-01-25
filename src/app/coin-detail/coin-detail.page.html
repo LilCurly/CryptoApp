@@ -1,11 +1,20 @@
 <app-header [headerTitle]="coin.name"></app-header>
 
-<ion-content>
-  <div class="container">
+<ion-content [fullscreen]="true">
+  <div class="coin-information">
     <ion-img [src]="coin.icon"></ion-img>
     <ion-label>{{ coin.symbol }}</ion-label>
-    <app-price-change-container
-      [items]="[{priceChangeInterval: 'Hourly', priceChangePercent: coin.priceChange1h},{priceChangeInterval: 'Daily', priceChangePercent: coin.priceChange1d},{priceChangeInterval: 'Weekly', priceChangePercent: coin.priceChange1w}]"
-    ></app-price-change-container>
+  <app-price-change-container
+    [items]="[{priceChangeInterval: 'Hourly', priceChangePercent: coin.priceChange1h},{priceChangeInterval: 'Daily', priceChangePercent: coin.priceChange1d},{priceChangeInterval: 'Weekly', priceChangePercent: coin.priceChange1w}]"
+  ></app-price-change-container>
   </div>
+  <ion-list>
+    <app-coin-news
+      *ngFor="let item of news"
+      [title]="item.title"
+      [description]="item.description"
+      [imgUrl]="item.imgUrl"
+      [linkUrl]="item.link"
+    ></app-coin-news>
+  </ion-list>
 </ion-content>

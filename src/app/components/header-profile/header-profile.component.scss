@@ -22,4 +22,20 @@ ion-toolbar {
     h2 {
         margin: 0;
     }
+
+    .icons-container {
+        margin-left: auto;
+
+        ion-avatar {
+            width: 32px;
+            height: 32px;
+
+            position: relative;
+            overflow: hidden;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
 }

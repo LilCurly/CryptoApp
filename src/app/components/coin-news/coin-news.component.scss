@@ -1,0 +1,33 @@
+.item {
+    margin: 12px;
+
+    .container {
+        width: 100%;
+        padding-bottom: 16px;
+        border-radius: 13px;
+        box-shadow: 0px 1px 13px var(--ion-color-cards);
+
+        background-color: var(--ion-color-cards);
+        display: flex;
+        flex-direction: column;
+        z-index: 2;
+
+        position: relative;
+        overflow: hidden;
+
+        ion-img {
+            width: 100%;
+            height: 100px;
+        }
+
+        ion-label {
+            padding: 0px 16px 0px 16px;
+
+            h2 {
+                font-weight: 700;
+                margin-bottom: 12px;
+                margin-top: 24px;
+            }
+        }
+    }
+}

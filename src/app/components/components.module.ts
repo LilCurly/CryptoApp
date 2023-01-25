@@ -9,10 +9,11 @@ import { HeaderComponent } from './header/header.component';
 import { NoteCardComponent } from './note-card/note-card.component';
 import { PriceChangeCardComponent } from './price-change-card/price-change-card.component';
 import { PriceChangeContainerComponent } from './price-change-container/price-change-container.component';
+import { CoinNewsComponent } from './coin-news/coin-news.component';
 
 @NgModule({
   imports: [CommonModule, FormsModule, IonicModule],
-  declarations: [HeaderProfileComponent, CardComponent, HeaderComponent, HeaderProfileComponent, NoteCardComponent, PriceChangeCardComponent, PriceChangeContainerComponent],
-  exports: [HeaderProfileComponent, CardComponent, HeaderComponent, HeaderProfileComponent, NoteCardComponent, PriceChangeCardComponent, PriceChangeContainerComponent],
+  declarations: [HeaderProfileComponent, CardComponent, HeaderComponent, HeaderProfileComponent, NoteCardComponent, PriceChangeCardComponent, PriceChangeContainerComponent, CoinNewsComponent],
+  exports: [HeaderProfileComponent, CardComponent, HeaderComponent, HeaderProfileComponent, NoteCardComponent, PriceChangeCardComponent, PriceChangeContainerComponent, CoinNewsComponent],
 })
 export class ComponentsModule {}
